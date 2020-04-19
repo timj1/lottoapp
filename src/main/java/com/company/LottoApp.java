@@ -9,6 +9,21 @@ public class LottoApp {
     // went by
     public static void main(String [] args) throws Exception {
         System.out.println("Hello me!");
+
+        int howmany = -1;
+            Set<Integer> userLotto = getUserLotto();
+            int weeks = 0;
+            do {
+
+                System.out.println("user lotto " + userLotto.toString());
+                Set<Integer> randomLotto = getRandomLotto();
+                System.out.println("random lotto " + randomLotto.toString());
+                weeks++;
+                howmany = checkHowMany(userLotto, randomLotto);
+
+            } while(howmany < 7);
+
+            System.out.println("It took " + weeks/52.0 + " years!");
     }
     
     // calculates how many same numbers are found from userlotto 
@@ -21,8 +36,6 @@ public class LottoApp {
     // Add seven unique random numbers between 1 - 40 to lottoNumbers
     public static Set<Integer> getRandomLotto() {
         TreeSet<Integer> lottoNumbers = new TreeSet<>();
-        
-        
         return lottoNumbers;
     }
     // Add numbers 1,2,3,4,5,6,7 to lottoNumbers
@@ -30,6 +43,12 @@ public class LottoApp {
     // later on you can ask these from the end user
     public static Set<Integer> getUserLotto() {
         TreeSet<Integer> lottoNumbers = new TreeSet<>();
+
+        int [] numbersU = {1,2,3,4,5,6,7};
+        for(int numb : numbersU) {
+            lottoNumbers.add(numb);
+        }
+
         return lottoNumbers;
     }
 }
