@@ -8,16 +8,16 @@ public class LottoApp {
     // jackpot (seven correct) is won. Calculate the years
     // went by
     public static void main(String [] args) throws Exception {
-        System.out.println("Hello me!");
+        System.out.println("Lotto calculate started");
 
         int howmany = -1;
             Set<Integer> userLotto = getUserLotto();
             int weeks = 0;
             do {
 
-                System.out.println("user lotto " + userLotto.toString());
+                //System.out.println("user lotto " + userLotto.toString());
                 Set<Integer> randomLotto = getRandomLotto();
-                System.out.println("random lotto " + randomLotto.toString());
+                //System.out.println("random lotto " + randomLotto.toString());
                 weeks++;
                 howmany = checkHowMany(userLotto, randomLotto);
 
@@ -30,7 +30,20 @@ public class LottoApp {
     // and randomlotto.
     // returns the number.
     public static int checkHowMany(Set<Integer> userLotto, Set<Integer> randomLotto) {
-        return -1;
+        TreeSet<Integer> userCheck = new TreeSet<>(userLotto);
+        TreeSet<Integer> randomCheck = new TreeSet<>(randomLotto);
+        int correctNumbers = 0;
+        for(int checkU : userCheck) {
+            
+            if(randomCheck.add(checkU)) {
+                //System.out.println("Unique number");
+            } else {
+                //System.out.println("Correct number");
+                correctNumbers++;
+            }         
+        }
+
+        return correctNumbers;
     }
     
     // Add seven unique random numbers between 1 - 40 to lottoNumbers
@@ -47,6 +60,7 @@ public class LottoApp {
                 i--;
             }
         }
+
         return lottoNumbers;
     }
     // Add numbers 1,2,3,4,5,6,7 to lottoNumbers
