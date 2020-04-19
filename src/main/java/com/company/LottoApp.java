@@ -2,14 +2,14 @@ package com.company;
 
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Scanner;
 
 public class LottoApp {
     // Create while or for loop that iterates until
     // jackpot (seven correct) is won. Calculate the years
     // went by
     public static void main(String [] args) throws Exception {
-        System.out.println("Lotto calculate started:");
-
+        
         int howmany = -1;
         int howmanyTmp = 0;
         Set<Integer> userLotto = getUserLotto();
@@ -75,11 +75,30 @@ public class LottoApp {
     public static Set<Integer> getUserLotto() {
         TreeSet<Integer> lottoNumbers = new TreeSet<>();
 
-        int [] numbersU = {1,2,3,4,5,6,7};
-        for(int numb : numbersU) {
-            lottoNumbers.add(numb);
+        Scanner input = new Scanner(System.in);
+        System.out.println("Give 7 lotto numbers 1-40:");
+        for(int i=0; i<7; i++) {
+            try{
+                int number = Integer.parseInt(input.nextLine());
+                
+                if(number > 0 && number <= 40) {
+                    if(lottoNumbers.add(number)) {
+                        System.out.println("Number added " + lottoNumbers.size());
+                    } else {
+                        System.out.println("Only unique numbers");
+                        i--;
+                    }
+                } else {
+                    System.out.println("Only numbers between 1-40");
+                    i--;
+                }
+            } catch(Exception e) {
+                System.out.println("Only numbers");
+                i--;
+            }
         }
 
+        System.out.println("Calculate started with numbers: " + lottoNumbers);
         return lottoNumbers;
     }
 }
