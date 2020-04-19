@@ -8,22 +8,28 @@ public class LottoApp {
     // jackpot (seven correct) is won. Calculate the years
     // went by
     public static void main(String [] args) throws Exception {
-        System.out.println("Lotto calculate started");
+        System.out.println("Lotto calculate started:");
 
         int howmany = -1;
-            Set<Integer> userLotto = getUserLotto();
-            int weeks = 0;
-            do {
+        int howmanyTmp = 0;
+        Set<Integer> userLotto = getUserLotto();
+        int weeks = 0;
+        do {
 
-                //System.out.println("user lotto " + userLotto.toString());
-                Set<Integer> randomLotto = getRandomLotto();
-                //System.out.println("random lotto " + randomLotto.toString());
-                weeks++;
-                howmany = checkHowMany(userLotto, randomLotto);
+            //System.out.println("user lotto " + userLotto.toString());
+            Set<Integer> randomLotto = getRandomLotto();
+            //System.out.println("random lotto " + randomLotto.toString());
+            weeks++;
+            howmany = checkHowMany(userLotto, randomLotto);
 
-            } while(howmany < 7);
+            if(howmany > howmanyTmp) {
+                System.out.println("Correct numbers " + howmany);
+                howmanyTmp = howmany;
+            }
 
-            System.out.println("It took " + weeks/52.0 + " years!");
+        } while(howmany < 7);
+
+        System.out.println("It took " + weeks/52.0 + " years!");
     }
     
     // calculates how many same numbers are found from userlotto 
