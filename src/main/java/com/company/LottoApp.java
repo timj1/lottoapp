@@ -36,6 +36,17 @@ public class LottoApp {
     // Add seven unique random numbers between 1 - 40 to lottoNumbers
     public static Set<Integer> getRandomLotto() {
         TreeSet<Integer> lottoNumbers = new TreeSet<>();
+
+        for(int i=0; i<7; i++) {
+            int randomNumber = (int) (Math.random() * 40) + 1;
+
+            if(lottoNumbers.add(randomNumber)) {
+                //System.out.println("Success when adding, it was unique");
+            } else {
+                //System.out.println("Fail when adding, already in TreeSet");
+                i--;
+            }
+        }
         return lottoNumbers;
     }
     // Add numbers 1,2,3,4,5,6,7 to lottoNumbers
